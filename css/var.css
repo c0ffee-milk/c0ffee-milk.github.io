@@ -59,7 +59,7 @@ body[data-color-scheme="auto"], body[data-color-scheme="light"] {
         --footer-link-grey: #a1a1a6;
 
         --body-bg: #101010;
-        --card-bg: #181818;
+        --card-bg: #505050;
         --card-title: #cfcfd5;
         --card-time: #6e6e73;
         --date-txt: #6e6e73;
@@ -93,7 +93,7 @@ body[data-color-scheme="dark"] {
     --footer-link-grey: #a1a1a6;
 
     --body-bg: #101010;
-    --card-bg: #181818;
+    --card-bg: #222222;
     --card-title: #cfcfd5;
     --card-time: #6e6e73;
     --date-txt: #6e6e73;
