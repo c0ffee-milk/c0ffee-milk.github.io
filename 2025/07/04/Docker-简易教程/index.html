@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head prefix="og: https://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>Docker 简易教程 - Hexo</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+  
+  
+  <meta property="og:title" content="Docker 简易教程 - Hexo" />
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:url" content="http://example.com/2025/07/04/Docker-%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/index.html" />
+  
+  <meta property="og:image" content="/favicon.png" />
+  
+  <meta property="og:article:published_time" content="2025-07-04T08:07:22.000Z" />
+  
+  <meta property="og:article:author" content="Latteo" />
+  
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/toc.css">
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/categories.css">
+
+  
+<link rel="stylesheet" href="/css/tags.css">
+
+  
+<link rel="stylesheet" href="/css/archive.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/giscus.css">
+
+
+    
+
+    
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+    <body
+        data-color-scheme="auto"
+        data-uppercase-categories="true"
+        
+        data-config-root="/"
+        
+        data-toc="true"
+        data-toc-max-depth="2"
+        
+        
+    >
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Blog</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Projects</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/c0ffee-milk" target="_blank" aria-label="GitHub">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-search nav-item-icon" href="/search" target="_blank" aria-label="Search">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        
+<article class="post">
+    <div class="meta">
+        
+
+        
+        <div class="date" id="date">
+            <span>July</span>
+            <span>4,</span>
+            <span>2025</span>
+        </div>
+        
+
+        <h1 class="title">Docker 简易教程</h1>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h2 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1. 基本概念"></a>1. 基本概念</h2><h3 id="1-1-什么是环境？"><a href="#1-1-什么是环境？" class="headerlink" title="1.1 什么是环境？"></a>1.1 什么是环境？</h3><p>“环境”通常指的是程序运行时所需要的<strong>上下文和配置信息的集合</strong></p>
+<p>程序在运行时需要各种各样的资源与服务，比如：</p>
+<ul>
+<li>操作系统（Windows &#x2F; Linux &#x2F; macOS）</li>
+<li>编程语言解释器或编译器（Python &#x2F; Java &#x2F; C++）</li>
+<li>各种库和工具（如 NumPy, PyTorch, Git）</li>
+<li>系统变量、路径设置</li>
+<li>软件版本（比如 Python 3.8 vs Python 3.10）</li>
+</ul>
+<p>环境对于程序的正常运行十分重要，不同程序可能要求不同的运行环境，因此环境配置变得十分重要。但环境配置十分麻烦，A环境中开发的软件在B环境中无法运行，换一台电脑就需要重新配置一次环境。因此，很多人想到，能不能从根本上解决问题，使软件带上环境安装，也就是说，安装的时候，把原始环境一模一样地复制过来。</p>
+<h3 id="1-2-虚拟机"><a href="#1-2-虚拟机" class="headerlink" title="1.2 虚拟机"></a>1.2 虚拟机</h3><p>虚拟机是带环境安装的一种解决方案。虚拟机可以在一种操作系统里运行另一种操作系统，用户可以通过虚拟机还原软件的原始环境。但是，这个方案有几个缺点：</p>
+<ol>
+<li>资源占用多：虚拟机需要独占一部分内存和硬盘空间</li>
+<li>冗余步骤多：虚拟机是完整的操作系统，一些系统级别的操作步骤，往往无法跳过，比如用户登录。</li>
+<li>启动慢：启动虚拟机相当于启动一台电脑，可能要等几分钟，应用程序才能真正运行。</li>
+</ol>
+<h3 id="1-3-Linux容器"><a href="#1-3-Linux容器" class="headerlink" title="1.3 Linux容器"></a>1.3 Linux容器</h3><p>由于虚拟机存在这些缺点，Linux 发展出了另一种虚拟化技术：Linux 容器</p>
+<p>**Linux 容器不是模拟一个完整的操作系统，而是对进程进行隔离。**对于容器里面的进程来说，它接触到的各种资源都是虚拟的，从而实现与底层系统的隔离。这个方案相比虚拟机有许多优势：</p>
+<ol>
+<li>启动快：启动容器相当于启动本机的一个进程，而不是启动一个操作系统，速度快很多。</li>
+<li>资源占用少：容器只占用需要的资源，不占用那些没有用到的资源。另外，多个容器可以共享资源</li>
+<li>体积少：容器只要包含用到的组件即可</li>
+</ol>
+<h3 id="1-4-Docker"><a href="#1-4-Docker" class="headerlink" title="1.4 Docker"></a>1.4 Docker</h3><p><strong>Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。</strong></p>
+<p>Docker将程序与程序的依赖打包放在一个文件里，运行这个文件时会生成一个虚拟容器。程序在这个虚拟容器里运行。</p>
+<p>Docker的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。</p>
+<p>Docker的主要用途有以下几点：</p>
+<ol>
+<li>提供一次性环境：比如，本地测试他人的软件、持续集成的时候提供单元测试和构建的环境。</li>
+<li>提供弹性的云服务：因为 Docker 容器可以随开随关，很适合动态扩容和缩容。</li>
+<li>组建为服务架构：通过多个容器，一台机器可以跑多个服务，因此在本机就可以模拟出微服务架构。</li>
+</ol>
+<h2 id="2-Docker的使用"><a href="#2-Docker的使用" class="headerlink" title="2. Docker的使用"></a>2. Docker的使用</h2><h3 id="2-1-安装Docker"><a href="#2-1-安装Docker" class="headerlink" title="2.1 安装Docker"></a>2.1 安装Docker</h3><p>Docker是一个开源的商用产品，分为社区版和企业版。</p>
+<p>Docker CE的安装参考官方文档：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[<span class="title class_">Mac</span>](<span class="language-xml">&lt;https://docs.docker.com/desktop/setup/install/mac-install/#system-requirements&gt;)</span></span><br><span class="line"><span class="language-xml">[Windows](&lt;https://docs.docker.com/desktop/setup/install/windows-install/&gt;)</span></span><br><span class="line"><span class="language-xml">[Ubuntu](&lt;https://docs.docker.com/install/linux/docker-ce/ubuntu/&gt;)</span></span><br><span class="line"><span class="language-xml">[Debian](&lt;https://docs.docker.com/install/linux/docker-ce/debian/&gt;)</span></span><br><span class="line"><span class="language-xml">[CentOS](&lt;https://docs.docker.com/install/linux/docker-ce/centos/&gt;)</span></span><br><span class="line"><span class="language-xml">[Fedora](&lt;https://docs.docker.com/install/linux/docker-ce/fedora/&gt;)</span></span><br><span class="line"><span class="language-xml">[其他 Linux 发行版](&lt;https://docs.docker.com/install/linux/docker-ce/binaries/&gt;)</span></span><br></pre></td></tr></table></figure>
+
+<p>安装完成后，运行以下命令验证是否安装成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker version</span><br><span class="line">or</span><br><span class="line">$ docker info</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-image文件"><a href="#2-2-image文件" class="headerlink" title="2.2 image文件"></a>2.2 image文件</h3><p><strong>Docker 把应用程序及其依赖，打包在 image 文件里面。</strong></p>
+<p>image文件相当于容器的模版，通过image文件可以生成Docker容器。同一个image文件可以生成多个同时运行的容器实例。</p>
+<p>image是二进制文件。实际开发中，一个 image 文件往往通过继承另一个 image 文件，加上一些个性化设置而生成。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列出本机所有image文件</span></span><br><span class="line">$ docker image <span class="built_in">ls</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除image文件</span></span><br><span class="line">$ docker image <span class="built_in">rm</span> [imageName]</span><br></pre></td></tr></table></figure>
+
+<p>image是通用的，为了节约时间，应该尽量使用别人制作好的image文件，而不是自己制作。即使要定制，也应该基于别人的iamge文件进行加工，而不是从零开始制作。</p>
+<p>为了方便共享，image文件制作完成后可以上传到网上的仓库。Docker的官方仓库是<a target="_blank" rel="noopener" href="https://hub.docker.com/">Docker Hub</a>。</p>
+<h3 id="2-3-Docker操作实例"><a href="#2-3-Docker操作实例" class="headerlink" title="2.3 Docker操作实例"></a>2.3 Docker操作实例</h3><p>使用最简单的image文件“hello world”熟悉Docker操作。</p>
+<ol>
+<li>将image文件从仓库抓取到本地</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image pull library/hello-world</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>docker image pull：抓取image文件的命令</li>
+<li>library&#x2F;hello-world：image文件在仓库里的位置，其中library是image文件所在的组，hello-world时image文件的名字。Docker 官方提供的 image 文件，都放在<a target="_blank" rel="noopener" href="https://hub.docker.com/r/library/"><code>library</code></a>组里面，所以它的是默认组，可以省略。</li>
+</ul>
+<p>抓取成功以后，就可以在本机看到这个 image 文件了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image <span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>运行这个image文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker container run hello-world</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>docker container run 命令会从image文件，生成一个正在运行的容器实例</li>
+<li>docker container run 命令会自动抓取image文件，如果本地没有指定的image文件，会从仓库自动抓取。</li>
+</ul>
+<p>运行成功后屏幕上会输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Hello from Docker!</span><br><span class="line">This message shows that your installation appears to be working correctly.</span><br></pre></td></tr></table></figure>
+
+<p>该容器在输出这段提示后会自动终止，对于不会自动终止的容器，使用以下命令手动终止：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker container <span class="built_in">kill</span> [containID]</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-容器文件"><a href="#3-容器文件" class="headerlink" title="3. 容器文件"></a>3. 容器文件</h2><p>**image 文件生成的容器实例，本身也是一个文件，称为容器文件。**也就是，容器生成后会同时存在两个文件：image文件和容器文件。关闭容器不会删除容器文件，只是容器停止运行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列出本机正在运行的容器</span></span><br><span class="line">$ docker container <span class="built_in">ls</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出本机所有容器，包括终止的容器</span></span><br><span class="line">$ docker container <span class="built_in">ls</span> --all</span><br></pre></td></tr></table></figure>
+
+<p>终止运行的容器文件依然会占据硬盘空间，可以使用以下命令删除：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker container <span class="built_in">rm</span> [containerID]</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-制作自己的Docker容器"><a href="#4-制作自己的Docker容器" class="headerlink" title="4. 制作自己的Docker容器"></a>4. 制作自己的Docker容器</h2><h3 id="4-1-Dockerfile文件"><a href="#4-1-Dockerfile文件" class="headerlink" title="4.1 Dockerfile文件"></a>4.1 Dockerfile文件</h3><p>在生成image文件时，需要用到Dockerfile文件，这是一个文本文件，用于配置image。Docker根据该文件生成二进制的image文件。</p>
+<h3 id="4-2-编写Dockerfile文件"><a href="#4-2-编写Dockerfile文件" class="headerlink" title="4.2 编写Dockerfile文件"></a>4.2 编写Dockerfile文件</h3><p>以koa-demos项目为例，尝试写一个Dockerfile文件，实现让用户在Docker容器中运行Koa框架。</p>
+<ol>
+<li>先下载源码：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> &lt;http://github.con/ruanyf/koa-demos.git&gt;</span><br><span class="line">$ <span class="built_in">cd</span> koa-demos</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在项目根目录下，新建一个文本文件.dockerignore，写入以下内容：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.git</span><br><span class="line">node_modules</span><br><span class="line">npm-debug.log</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在项目根目录下，新建一个文本文件Dockerfile，写入以下内容：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FROM node:8.4</span><br><span class="line">COPY . /app</span><br><span class="line">WORKDIR /app</span><br><span class="line">RUN npm install --registry==https://registry.npm.taobao.org</span><br><span class="line">EXPOSE 3000</span><br></pre></td></tr></table></figure>
+
+<p>含义如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FROM node:8.4：该 image 文件继承官方的 node image，冒号表示标签，这里标签是8.4，即8.4版本的 node。</span><br><span class="line">COPY . /app：将当前目录下的所有文件（除了.dockerignore排除的路径），都拷贝进入 image 文件的/app目录。</span><br><span class="line">WORKDIR /app：指定接下来的工作路径为/app。</span><br><span class="line">RUN npm install：在/app目录下，运行npm install命令安装依赖。注意，安装后所有的依赖，都将打包进入 image 文件。</span><br><span class="line">EXPOSE 3000：将容器 3000 端口暴露出来， 允许外部连接这个端口。</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-创建image文件"><a href="#4-3-创建image文件" class="headerlink" title="4.3 创建image文件"></a>4.3 创建image文件</h3><p>有Dockerfile文件后，可以使用以下命令创建image文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker image build -t koa-demo .</span><br><span class="line">or</span><br><span class="line">$ docker image build -t koa-dema:0.0.1 .</span><br></pre></td></tr></table></figure>
+
+<p>-t 参数用来指定image文件的名字，后面还可以用冒号指定标签。如果不指定，默认标签为latest。最后的. 表示Dockerfile文件所在路径。</p>
+<p>如果运行成功，就可以看到新生成的 image 文件了。</p>
+<h3 id="4-4-生成容器"><a href="#4-4-生成容器" class="headerlink" title="4.4 生成容器"></a>4.4 生成容器</h3><p>使用docker container run命令从image文件生成容器。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker container run -p 8000:3000 -it koa-demo /bin/bash</span><br><span class="line">or</span><br><span class="line">$ docker container run -p 8000:3000 -it koa-demo:0.0.1 /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>以上命令的各个参数含义如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-p参数：容器的 3000 端口映射到本机的 8000 端口。</span><br><span class="line">-it参数：容器的 Shell 映射到当前的 Shell，然后你在本机窗口输入的命令，就会传入容器。</span><br><span class="line">koa-demo:0.0.1：image 文件的名字（如果有标签，还需要提供标签，默认是 latest 标签）。</span><br><span class="line">/bin/bash：容器启动以后，内部第一个执行的命令。这里是启动 Bash，保证用户可以使用 Shell。</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-5-发布image文件"><a href="#4-5-发布image文件" class="headerlink" title="4.5 发布image文件"></a>4.5 发布image文件</h3><ol>
+<li>在<a target="_blank" rel="noopener" href="https://hub.docker.com/">hub.docker.com</a> 或 <a target="_blank" rel="noopener" href="https://cloud.docker.com/">cloud.docker.com</a> 注册一个账户，用以下命令登陆：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker login</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>为本地的image标注用户名和版本：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker image tag [imageName] [username]/[repository]:[tag]</span><br><span class="line"><span class="comment"># 示例</span></span><br><span class="line">$ docker image tag koa-demos:0.0.1 Latteo/koa-demos:0.0.1</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>发布image文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image push [username]/[repository]:[tag]</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    <div class="about">
+        <h1>About this Post</h1>
+        <div class="details">
+            <p>This post is written by Latteo, licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+        </div>
+        
+    </div>
+    
+
+    <div class="container post-prev-next">
+        <a class="next"></a>
+        
+        <a href="/2025/06/29/pytorch/" class="prev">
+            <div>
+                <div class="text">
+                    <p class="label">Previous</p>
+                    <h3 class="title">pytorch 简易入门</>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+
+    
+        
+        
+    
+</article>
+
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+        </div>
+        <span>&copy; 2025 Latteo<br>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> </span>
+        
+        
+            <br>
+            <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+                <label>
+                    <input type="radio" value="light">
+                    <span>Light</span>
+                </label>
+                <label>
+                    <input type="radio" value="dark">
+                    <span>Dark</span>
+                </label>
+                <label>
+                    <input type="radio" value="auto">
+                    <span>Auto</span>
+                </label>
+            </div>
+        
+    </div>
+</footer>
+
+
+        
+<script src="/js/main.js"></script>
+
+        
+        
+        
+
+        
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            window.addEventListener('load', () => {
+                ScrollReveal({ delay: 250, reset: true, easing: 'cubic-bezier(0, 0, 0, 1)' })
+                ScrollReveal().reveal('.post-list-item .cover-img img')
+                ScrollReveal().reveal('.post-list-item, .card, .content p img, .content .block-large img', { distance: '60px', origin: 'bottom', duration: 800 })
+            })
+        </script>
+        
+    </body>
+</html>
