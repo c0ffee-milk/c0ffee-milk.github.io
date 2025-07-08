@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head prefix="og: https://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>PyTorch中的模型 - Hexo</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+  
+  
+  <meta property="og:title" content="PyTorch中的模型 - Hexo" />
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:url" content="http://example.com/2025/07/08/PyTorch%E4%B8%AD%E7%9A%84%E6%A8%A1%E5%9E%8B/index.html" />
+  
+  <meta property="og:image" content="/favicon.png" />
+  
+  <meta property="og:article:published_time" content="2025-07-08T06:13:56.000Z" />
+  
+  <meta property="og:article:author" content="Latteo" />
+  
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/toc.css">
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/categories.css">
+
+  
+<link rel="stylesheet" href="/css/tags.css">
+
+  
+<link rel="stylesheet" href="/css/archive.css">
+
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/giscus.css">
+
+
+    
+
+    
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+    <body
+        data-color-scheme="auto"
+        data-uppercase-categories="true"
+        
+        data-config-root="/"
+        
+        data-toc="true"
+        data-toc-max-depth="2"
+        
+        
+    >
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Blog</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Projects</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/c0ffee-milk" target="_blank" aria-label="GitHub">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-search nav-item-icon" href="/search" target="_blank" aria-label="Search">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        
+<article class="post">
+    <div class="meta">
+        
+
+        
+        <div class="date" id="date">
+            <span>July</span>
+            <span>8,</span>
+            <span>2025</span>
+        </div>
+        
+
+        <h1 class="title">PyTorch中的模型</h1>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h2 id="1-模型定义的基本原理"><a href="#1-模型定义的基本原理" class="headerlink" title="1. 模型定义的基本原理"></a>1. 模型定义的基本原理</h2><p>在PyTorch中，模型定义是通过定义一个继承自 <code>torch.nn.Module</code> 类的 Python类来实现的。</p>
+<p>模型定义的基本原理如下：</p>
+<ol>
+<li>创建一个继承自<code>torch.nn.Module</code>的子类，这个子类将成为我们定义的模型。</li>
+<li>在子类的构造函数中，首先调用<code>super().__init__()</code>来初始化父类<code>torch.nn.Module</code>，然后在构造函数中定义模型的各个层和模块。</li>
+<li>在子类中实现<code>forward</code>方法，该方法定义了模型的前向传播过程，即定义了输入数据如何经过各个层进行计算得到输出。</li>
+<li>可选地，在子类中实现<code>__str__</code>方法，用于打印模型的结构信息。</li>
+</ol>
+<h2 id="2-模型参数和层的概念"><a href="#2-模型参数和层的概念" class="headerlink" title="2. 模型参数和层的概念"></a>2. 模型参数和层的概念</h2><h3 id="2-1-模型参数"><a href="#2-1-模型参数" class="headerlink" title="2.1 模型参数"></a>2.1 模型参数</h3><p>模型参数是模型内部可学习的参数，它们会在训练过程中自动更新以优化模型的性能。常见的模型参数包括权重（weights）和偏置（biases）。权重是连接不同神经元的连接强度，而偏置是每个神经元的激活阈值。</p>
+<h3 id="2-2-层"><a href="#2-2-层" class="headerlink" title="2.2 层"></a>2.2 层</h3><p>层是模型中的构建块，它们接受输入数据并将其转换为输出数据。层通常包含一些可学习的参数，例如全连接层中的权重和偏置。常见的层类型包括全连接层、卷积层、池化层等。</p>
+<h2 id="3-模型定义示例"><a href="#3-模型定义示例" class="headerlink" title="3. 模型定义示例"></a>3. 模型定义示例</h2><p>以下代码定义了一个简单的全连接神经网络模型，包含一个输入层、一个隐藏层和一个输出层。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SimpleNet</span>(nn.Module):</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, input_size, hidden_size, output_size</span>):</span><br><span class="line">		<span class="built_in">super</span>(SimpleNet, <span class="variable language_">self</span>).__init__()</span><br><span class="line">		<span class="variable language_">self</span>.fc1 = nn.Linear(input_size, hidden_size)</span><br><span class="line">		<span class="variable language_">self</span>.relu = nn.ReLU()</span><br><span class="line">		<span class="variable language_">self</span>.fc2 = nn.Linear(hidden_size, output_size)</span><br><span class="line">		</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">		out = <span class="variable language_">self</span>.fc1(x)</span><br><span class="line">		out = <span class="variable language_">self</span>.relu(out)</span><br><span class="line">		out = <span class="variable language_">self</span>.fc2(out)</span><br><span class="line">		<span class="keyword">return</span> out</span><br><span class="line">		</span><br><span class="line"><span class="comment"># 创建一个实例化的模型</span></span><br><span class="line">input_size = <span class="number">100</span></span><br><span class="line">hidden_size = <span class="number">50</span></span><br><span class="line">output_size = <span class="number">10</span></span><br><span class="line">model = SimpleNet(input_size, hidden_size, output_size)</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-模型定义的详细解释"><a href="#4-模型定义的详细解释" class="headerlink" title="4. 模型定义的详细解释"></a>4. 模型定义的详细解释</h2><h3 id="4-1-模型类的定义"><a href="#4-1-模型类的定义" class="headerlink" title="4.1 模型类的定义"></a>4.1 模型类的定义</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SimpleNet</span>(nn.Module)</span><br></pre></td></tr></table></figure>
+
+<p>这段代码创建了一个继承自<code>nn.Module</code>的子类<code>SimpleNet</code>，这个子类将作为我们定义的模型。继承自<code>nn.Module</code>的子类会继承父类的属性和方法，使我们能够利用<code>nn.Module</code>提供的丰富功能来定义和操作模型。</p>
+<h3 id="4-2-构造函数和模型层的定义"><a href="#4-2-构造函数和模型层的定义" class="headerlink" title="4.2 构造函数和模型层的定义"></a>4.2 构造函数和模型层的定义</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, input_size, hidden_size, output_size</span>):</span><br><span class="line">		<span class="built_in">super</span>(SimpleNet, <span class="variable language_">self</span>).__init__()</span><br><span class="line">		<span class="variable language_">self</span>.fc1 = nn.Linear(input_size, hidden_size)</span><br><span class="line">		<span class="variable language_">self</span>.relu = nn.ReLU()</span><br><span class="line">		<span class="variable language_">self</span>.fc2 = nn.Linear(hidden_size, output_size)</span><br></pre></td></tr></table></figure>
+
+<p>首先调用<code>super().__init__()</code>来初始化父类<code>nn.Module</code> 。在构造函数中，定义了模型的各个层和模块。在示例中，定义了三个模型层：一个全连接层<code>fc1</code>，一个ReLU激活函数<code>relu</code>，以及另一个全连接层<code>fc2</code>。</p>
+<p>全连接层<code>nn.Linear</code> 是神经网络中最常用的层之一，它将输入数据的每个元素都与权重进行线性组合，并添加偏置，然后将结果传递给下一层。<code>nn.Linear</code>的第一个参数是输入特征的大小，第二个参数是输出特征的大小。这些参数决定了权重矩阵的形状。</p>
+<p>ReLU激活函数<code>nn.ReLU</code>是一种非线性函数，它将负值映射为零，保留正值。这样可以为模型引入非线性能力，使其能够学习更加复杂的函数关系。</p>
+<h3 id="4-3-前向传播方法的实现"><a href="#4-3-前向传播方法的实现" class="headerlink" title="4.3 前向传播方法的实现"></a>4.3 前向传播方法的实现</h3><p><code>forward</code>方法定义了模型的前向传播过程，即输入数据如何经过各个层进行计算得到输出。</p>
+<p><code>forward</code>方法接收输入数据<code>x</code>作为参数。我们首先将输入数据传递给第一个全连接层<code>fc1</code>，然后将输出结果传递给ReLU激活函数<code>relu</code>。接着，将ReLU激活函数的输出传递给第二个全连接层<code>fc2</code>，最终得到模型的输出结果<code>out</code>。最后，我们将<code>out</code>返回作为模型的输出。</p>
+<h3 id="4-4-模型实例化"><a href="#4-4-模型实例化" class="headerlink" title="4.4 模型实例化"></a>4.4 模型实例化</h3><p>模型定义完成之后，通过实例化<code>SimpleNet</code>类来创建一个模型对象。在实例化时，提供参数输入层大小<code>input_size</code>、隐藏层的大小<code>hidden_size</code>和输出层的大小<code>output_size</code>。</p>
+<p>这些参数的选择取决于具体的问题和数据。例如，在图像分类任务中，输入层的大小通常由图像的尺寸和通道数确定，输出层的大小通常对应于类别的数量。隐藏层的大小可以根据问题的复杂性和模型的容量要求进行调整。</p>
+<h2 id="5-保存和加载模型"><a href="#5-保存和加载模型" class="headerlink" title="5. 保存和加载模型"></a>5. 保存和加载模型</h2><p>保存和加载模型有三个核心函数：</p>
+<ol>
+<li><code>torch.save</code> ：把序列化的对象保存到硬盘。它利用了 Python 的 <code>pickle</code> 来实现序列化。模型、张量以及字典都可以用该函数进行保存；</li>
+<li><code>torch.load</code> ：采用 <code>pickle</code> 将反序列化的对象从存储中加载进来。</li>
+<li><code>torch.nn.Module.load_state_dict</code>：采用一个反序列化的 <code>state_dict</code>加载一个模型的参数字典。</li>
+</ol>
+<h3 id="5-1-状态字典state-dict"><a href="#5-1-状态字典state-dict" class="headerlink" title="5.1 状态字典state_dict"></a>5.1 状态字典<code>state_dict</code></h3><p>PyTorch中，一个模型的可学习参数（权重和偏置值）是包含在模型参数（<code>model.parameters()</code>）中的，一个状态字典就是一个简单的 Python 的字典，其键值对是每个网络层和其对应的参数张量。</p>
+<h3 id="5-2-预测时加载和保存"><a href="#5-2-预测时加载和保存" class="headerlink" title="5.2 预测时加载和保存"></a>5.2 预测时加载和保存</h3><ol>
+<li>加载&#x2F;保存状态字典（推荐）</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 保存模型</span></span><br><span class="line">torch.save(model.state_dict(), PATH)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载模型</span></span><br><span class="line">model = TheModelClass(*args, **kwargs)</span><br><span class="line">model.load_state_dict(torch.load(PATH))</span><br><span class="line">model.<span class="built_in">eval</span>()</span><br></pre></td></tr></table></figure>
+
+<p>当需要为预测保存一个模型的时候，只需要保存训练模型的可学习参数即可。采用 <code>torch.save()</code> 来保存模型的状态字典的做法可以更方便加载模型。通常会用 <code>.pt</code> 或者 <code>.pth</code> 后缀来保存模型</p>
+<ol>
+<li>加载&#x2F;保存整个模型</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 保存模型</span></span><br><span class="line">torch.save(model, PATH)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载模型</span></span><br><span class="line">model = torch.load(PATH)</span><br><span class="line">model.<span class="built_in">eval</span>()</span><br></pre></td></tr></table></figure>
+
+<p>这种实现保存模型的做法将是采用 Python 的 <code>pickle</code> 模块来保存整个模型，这种做法的缺点就是序列化后的数据是属于特定的类和指定的字典结构，原因就是 <code>pickle</code> 并没有保存模型类别，而是保存一个包含该类的文件路径，因此，当在其他项目或者在 <code>refactors</code> 后采用都可能出现错误。</p>
+<ol>
+<li><strong>加载和保存一个通用的检查点(Checkpoint)</strong></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 保存</span></span><br><span class="line">torch.save(&#123;</span><br><span class="line">            <span class="string">&#x27;epoch&#x27;</span>: epoch,</span><br><span class="line">            <span class="string">&#x27;model_state_dict&#x27;</span>: model.state_dict(),</span><br><span class="line">            <span class="string">&#x27;optimizer_state_dict&#x27;</span>: optimizer.state_dict(),</span><br><span class="line">            <span class="string">&#x27;loss&#x27;</span>: loss,</span><br><span class="line">            ...</span><br><span class="line">            &#125;, PATH)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载</span></span><br><span class="line">model = TheModelClass(*args, **kwargs)</span><br><span class="line">optimizer = TheOptimizerClass(*args, **kwargs)</span><br><span class="line"></span><br><span class="line">checkpoint = torch.load(PATH)</span><br><span class="line">model.load_state_dict(checkpoint[<span class="string">&#x27;model_state_dict&#x27;</span>])</span><br><span class="line">optimizer.load_state_dict(checkpoint[<span class="string">&#x27;optimizer_state_dict&#x27;</span>])</span><br><span class="line">epoch = checkpoint[<span class="string">&#x27;epoch&#x27;</span>]</span><br><span class="line">loss = checkpoint[<span class="string">&#x27;loss&#x27;</span>]</span><br><span class="line"></span><br><span class="line">model.<span class="built_in">eval</span>()</span><br><span class="line"><span class="comment"># - or -</span></span><br><span class="line">model.train()</span><br></pre></td></tr></table></figure>
+
+<p>保存一个通用的检查点时，需要保存更多的信息，包括但不限于模型的<code>state_dict</code> 、优化器的<code>state_dict</code> 、当前<code>epoch</code> 以及最后一次训练的<code>loss</code> 。</p>
+<p>上述保存代码使用字典来组织需要保存的信息，然后继续调用 <code>torch.save</code> 方法，一般保存的文件后缀名是 <code>.tar</code> 。</p>
+<ol>
+<li><strong>在同一个文件保存多个模型</strong></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 保存</span></span><br><span class="line">torch.save(&#123;</span><br><span class="line">            <span class="string">&#x27;modelA_state_dict&#x27;</span>: modelA.state_dict(),</span><br><span class="line">            <span class="string">&#x27;modelB_state_dict&#x27;</span>: modelB.state_dict(),</span><br><span class="line">            <span class="string">&#x27;optimizerA_state_dict&#x27;</span>: optimizerA.state_dict(),</span><br><span class="line">            <span class="string">&#x27;optimizerB_state_dict&#x27;</span>: optimizerB.state_dict(),</span><br><span class="line">            ...</span><br><span class="line">            &#125;, PATH)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载</span></span><br><span class="line">modelA = TheModelAClass(*args, **kwargs)</span><br><span class="line">modelB = TheModelBClass(*args, **kwargs)</span><br><span class="line">optimizerA = TheOptimizerAClass(*args, **kwargs)</span><br><span class="line">optimizerB = TheOptimizerBClass(*args, **kwargs)</span><br><span class="line"></span><br><span class="line">checkpoint = torch.load(PATH)</span><br><span class="line">modelA.load_state_dict(checkpoint[<span class="string">&#x27;modelA_state_dict&#x27;</span>])</span><br><span class="line">modelB.load_state_dict(checkpoint[<span class="string">&#x27;modelB_state_dict&#x27;</span>])</span><br><span class="line">optimizerA.load_state_dict(checkpoint[<span class="string">&#x27;optimizerA_state_dict&#x27;</span>])</span><br><span class="line">optimizerB.load_state_dict(checkpoint[<span class="string">&#x27;optimizerB_state_dict&#x27;</span>])</span><br><span class="line"></span><br><span class="line">modelA.<span class="built_in">eval</span>()</span><br><span class="line">modelB.<span class="built_in">eval</span>()</span><br><span class="line"><span class="comment"># - or -</span></span><br><span class="line">modelA.train()</span><br><span class="line">modelB.train()</span><br></pre></td></tr></table></figure>
+
+<p>与保存检查点类似，采用字典来保持<strong>模型的</strong> <strong><code>state_dict</code></strong> <strong>和对应优化器的</strong> **<code>state_dict</code> 。**同样，保存的模型文件通常是以 <code>.tar</code> 作为后缀名。</p>
+<ol>
+<li><strong>采用另一个模型的参数来预热模型(Warmstaring Model)</strong></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 保存</span></span><br><span class="line">torch.save(modelA.state_dict(), PATH)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载</span></span><br><span class="line">modelB = TheModelBClass(*args, **kwargs)</span><br><span class="line">modelB.load_state_dict(torch.load(PATH), strict=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这种做法通常是加载预训练模型的部分网络参数作为模型的初始化参数，然后可以加快模型的收敛速度。</p>
+<p>其中设置参数 <code>strict=False</code> 表示忽略不匹配的网络层参数，因为通常我们都不会完全采用和预训练模型完全一样的网络，通常输出层的参数就会不一样。</p>
+<h2 id="6-如何了解已有的模型"><a href="#6-如何了解已有的模型" class="headerlink" title="6. 如何了解已有的模型"></a>6. 如何了解已有的模型</h2><h3 id="6-1-获取模型的方式"><a href="#6-1-获取模型的方式" class="headerlink" title="6.1 获取模型的方式"></a>6.1 获取模型的方式</h3><p>从Hugging Face下载模型</p>
+<ol>
+<li>使用Hugging Face CLI下载模型</li>
+</ol>
+<p>安装Hugging Face CLI工具</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install huggingface_hub</span><br></pre></td></tr></table></figure>
+
+<p>登陆Hugging Face账户（仅限私有模型）</p>
+<p>如果要下载 私有模型 或使用高权限 API 访问，需要登录 Hugging Face 账户。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">huggingface-cli login</span><br></pre></td></tr></table></figure>
+
+<p>下载模型</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">huggingface-cli download /PATH --cache-dir ./my_model</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>通过Python代码下载模型</li>
+</ol>
+<p>安装必要的依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install transformers huggingface_hub</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>transformers</code>：用于加载预训练模型。</li>
+<li><code>huggingface_hub</code>：提供下载和管理模型的 API。</li>
+</ul>
+<p>通过代码下载模型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> AutoModel, AutoTokenizer</span><br><span class="line"></span><br><span class="line"><span class="comment"># 模型名称，例如 &quot;shibing624/text2vec-base-chinese&quot;</span></span><br><span class="line">model_name = <span class="string">&quot;shibing624/text2vec-base-chinese&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载并加载模型和分词器</span></span><br><span class="line">tokenizer = AutoTokenizer.from_pretrained(model_name)</span><br><span class="line">model = AutoModel.from_pretrained(model_name)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存到自定义路径（可选）</span></span><br><span class="line">model.save_pretrained(<span class="string">&quot;./my_model&quot;</span>)</span><br><span class="line">tokenizer.save_pretrained(<span class="string">&quot;./my_model&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>模型会缓存在 <code>C:\\Users\\&lt;你的用户名&gt;\\.cache\\huggingface\\hub</code> 目录下。</li>
+<li><code>model.save_pretrained()</code> 可将模型保存到自定义路径（如 <code>./my_model</code>）。</li>
+</ul>
+<h3 id="6-2-获取模型信息"><a href="#6-2-获取模型信息" class="headerlink" title="6.2 获取模型信息"></a>6.2 获取模型信息</h3><p>可使用第三方库<code>torchsummary</code>获取模型参数情况</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装库</span></span><br><span class="line">pip install torchsummary</span><br><span class="line"></span><br><span class="line"><span class="comment"># 引入库的summary方法</span></span><br><span class="line"><span class="keyword">from</span> torchsummary <span class="keyword">import</span> summary</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用命令获取模型参数情况</span></span><br><span class="line">summary(model, input_size=(ch, h, w), batch_size=-<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这里的ch是指输入张量的channel数量，h表示输入张量的高，w表示输入张量的宽。</p>
+
+    </div>
+
+    
+    <div class="about">
+        <h1>About this Post</h1>
+        <div class="details">
+            <p>This post is written by Latteo, licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+        </div>
+        
+    </div>
+    
+
+    <div class="container post-prev-next">
+        <a class="next"></a>
+        
+        <a href="/2025/07/04/Docker-%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/" class="prev">
+            <div>
+                <div class="text">
+                    <p class="label">Previous</p>
+                    <h3 class="title">Docker 简易教程</>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+
+    
+        
+        
+    
+</article>
+
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+        </div>
+        <span>&copy; 2025 Latteo<br>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> </span>
+        
+        
+            <br>
+            <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+                <label>
+                    <input type="radio" value="light">
+                    <span>Light</span>
+                </label>
+                <label>
+                    <input type="radio" value="dark">
+                    <span>Dark</span>
+                </label>
+                <label>
+                    <input type="radio" value="auto">
+                    <span>Auto</span>
+                </label>
+            </div>
+        
+    </div>
+</footer>
+
+
+        
+<script src="/js/main.js"></script>
+
+        
+        
+        
+
+        
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            window.addEventListener('load', () => {
+                ScrollReveal({ delay: 250, reset: true, easing: 'cubic-bezier(0, 0, 0, 1)' })
+                ScrollReveal().reveal('.post-list-item .cover-img img')
+                ScrollReveal().reveal('.post-list-item, .card, .content p img, .content .block-large img', { distance: '60px', origin: 'bottom', duration: 800 })
+            })
+        </script>
+        
+    </body>
+</html>
