@@ -1,10 +1,10 @@
 {
-  "name": "COFFEE_OS / Latteo Blog",
-  "short_name": "COFFEE_OS",
+  "name": "c0ffee-milk",
+  "short_name": "c0ffee-milk",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a0b09",
-  "theme_color": "#0a0b09",
+  "background_color": "#080808",
+  "theme_color": "#080808",
   "icons": [
     {
       "src": "/favicon.png",
